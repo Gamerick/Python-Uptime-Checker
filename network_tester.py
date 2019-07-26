@@ -24,13 +24,18 @@ now = datetime.now().strftime("%d-%m-%Y %H_%M_%S")
 f = open(now + ".csv", 'w')
 csv_writer = csv.writer(f)
 
+print("Beginning internet monitor")
+
 while True:
     sleep(FREQUENCY_SECS)
     timestamp = datetime.now().strftime("%d-%m-%Y %H_%M_%S")
     if getGateway() is None:
         csv_writer.writerow([timestamp, 'No Connection'])
+        print(timestamp + ": No Connection")
     elif isReachable('8.8.8.8') is None:
         csv_writer.writerow([timestamp, 'Connection to Router'])
+        print(timestamp + ": Connection to Router")
     else:
         csv_writer.writerow([timestamp, 'Connection to Internet'])
+        print(timestamp + ": Connection to Internet")
 
