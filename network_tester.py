@@ -26,7 +26,7 @@ csv_writer = csv.writer(f)
 
 while True:
     sleep(FREQUENCY_SECS)
-    timestamp = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+    timestamp = datetime.now().strftime("%d-%m-%Y %H_%M_%S")
     if getGateway() is None:
         csv_writer.writerow([timestamp, 'No Connection'])
     elif isReachable('8.8.8.8') is None:
