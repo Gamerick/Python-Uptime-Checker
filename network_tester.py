@@ -20,7 +20,7 @@ def isReachable(ip_addr):
     except socket.herror:
         return None
 
-now = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+now = datetime.now().strftime("%d-%m-%Y %H_%M_%S")
 f = open(now + ".csv", 'w')
 csv_writer = csv.writer(f)
 
