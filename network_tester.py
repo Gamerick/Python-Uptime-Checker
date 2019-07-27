@@ -5,7 +5,7 @@ import netifaces as nf
 from datetime import datetime
 from time import sleep
 
-FREQUENCY_SECS = 60
+FREQUENCY_SECS = 3
 
 def getGateway():
     try:
@@ -22,13 +22,14 @@ def isReachable(ip_addr):
 
 now = datetime.now().strftime("%d-%m-%Y %H_%M_%S")
 f = open(now + ".csv", 'w')
-csv_writer = csv.writer(f)
+csv_writer = csv.writer(f, dialect='excel')
+csv_writer.writerow(['Timestamp', 'Connection status'])
 
 print("Beginning internet monitor")
 
 while True:
     sleep(FREQUENCY_SECS)
-    timestamp = datetime.now().strftime("%d-%m-%Y %H_%M_%S")
+    timestamp = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
     if getGateway() is None:
         csv_writer.writerow([timestamp, 'No Connection'])
         print(timestamp + ": No Connection")
@@ -38,4 +39,3 @@ while True:
     else:
         csv_writer.writerow([timestamp, 'Connection to Internet'])
         print(timestamp + ": Connection to Internet")
-
