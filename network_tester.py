@@ -5,7 +5,7 @@ import netifaces as nf
 from datetime import datetime
 from time import sleep
 
-FREQUENCY_SECS = 3
+FREQUENCY_SECS = 5
 
 def getGateway():
     try:
