@@ -4,6 +4,8 @@ import enum
 import netifaces as nf
 from datetime import datetime
 from time import sleep
+from tkinter import Tk
+import tkinter.filedialog as fileDialog
 
 FREQUENCY_SECS = 5
 
@@ -20,9 +22,11 @@ def isReachable(ip_addr):
     except socket.herror:
         return None
 
-now = datetime.now().strftime("%d-%m-%Y %H_%M_%S")
-f = open(now + ".csv", 'w')
-csv_writer = csv.writer(f, dialect='excel')
+Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
+saveFile = fileDialog.asksaveasfile(defaultextension='.csv') # show an "Open" dialog box and return the path to the selected file
+print("Setting save location to {saveFile.name}")
+
+csv_writer = csv.writer(saveFile, dialect='excel')
 csv_writer.writerow(['Timestamp', 'Connection status'])
 
 print("Beginning internet monitor")
