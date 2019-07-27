@@ -1,6 +1,5 @@
 import socket
 import csv
-import enum
 import netifaces as nf
 from datetime import datetime
 from time import sleep
